@@ -23,9 +23,14 @@ jobs:
     - name: Build Library
       run: npm run build
 
+    - name: Authenticate with npm
+      run: npm login --registry=https://registry.npmjs.org/ --scope=public --json
+      env:
+       NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
     - name: Publish to npm
       if: github.ref == 'refs/heads/master'
-      run: npm publish
+      run: npm publish --access public
       env:
        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
