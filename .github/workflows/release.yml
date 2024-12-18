@@ -16,7 +16,6 @@ jobs:
       uses: actions/setup-node@v3
       with:
         node-version: '20.12.2'
-        cache: 'none'
 
     - name: Install Dependencies
       run: npm install
