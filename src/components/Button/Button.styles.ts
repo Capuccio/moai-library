@@ -1,4 +1,4 @@
-import { ButtonProps } from "./Button.component";
+import { ButtonProps } from './Button.component';
 
 export const colorButton: Record<string, string> = {
   primary: 'bg-[#002e62] text-white',

@@ -1,5 +1,5 @@
-import { createDecipheriv, createCipheriv, randomBytes } from "node:crypto";
-import { DecryptToken } from "./types";
+import { createDecipheriv, createCipheriv, randomBytes } from 'node:crypto';
+import { DecryptToken } from './types';
 
 export const handleDecodeToken = ({ token, secret }: { token: string; secret: string }): DecryptToken | void => {
   try {

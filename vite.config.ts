@@ -22,7 +22,7 @@ export default defineConfig({
     lib: {
       entry: './src/index.ts',
       name: 'MoaiLibrary',
-      fileName: (format) => `index.${format}.js`
+      fileName: format => `index.${format}.js`
     },
     rollupOptions: {
       external: ['vm-browserify', 'react', 'react-dom', 'react/jsx-runtime', 'next'],
@@ -31,7 +31,7 @@ export default defineConfig({
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'react/jsx-runtime',
-          'next': 'Next'
+          next: 'Next'
         }
       }
     }

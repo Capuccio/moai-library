@@ -1,0 +1,38 @@
+name: Release
+on:
+ push:
+  branches:
+    - master
+
+jobs:
+ release:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout Code
+      uses: actions/checkout@v3
+ 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20.12.2'
+        cache: 'npm'
+
+    - name: Install Dependencies
+      run: npm install
+ 
+    - name: Build Library
+      run: npm run build
+
+    - name: Publish to npm
+      if: github.ref == 'refs/head/master'
+      uses: action/create-release@v1
+      with:
+        tag_name: ${{ github.sha }}
+        release_name: Release ${{ github.sha }}
+        body: |
+          This release was created by Github Actions Workflows
+        draft: false
+        prerelease: false
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
