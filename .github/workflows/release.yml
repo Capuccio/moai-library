@@ -23,7 +23,7 @@ jobs:
     - name: Build Library
       run: npm run build
 
-    - name: Log in to npm
+    - name: Authenticate with npm
       run: npm login --registry=https://registry.npmjs.org/ --scope=public --json
       env:
        NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -45,3 +45,5 @@ jobs:
         This release was created by GitHub Actions Workflows.
        draft: false
        prerelease: false
+      env:
+       MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
