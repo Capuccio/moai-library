@@ -25,10 +25,9 @@ jobs:
 
     - name: Publish to npm
       if: github.ref == 'refs/heads/master'
-      run: npm publish --access public
+      run: npm publish
       env:
        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
     - name: Create GitHub Release
       if: github.ref == 'refs/heads/master'
