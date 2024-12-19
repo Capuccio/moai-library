@@ -46,8 +46,8 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: actions/create-release@v1
       with:
-       tag_name: echo "$VERSION"
-       release_name: echo "Release $VERSION"
+       tag_name: $VERSION
+       release_name: Release $VERSION
        body: |
         This release was created by GitHub Actions Workflows.
        draft: false
