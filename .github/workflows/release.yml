@@ -25,7 +25,7 @@ jobs:
 
     - name: Get last tag version
       id: version
-      run: echo "version=$(node -p \"require('./package.json').version\")" >> $GITHUB_ENV
+      run: echo "version=$(node -p 'require(\"./package.json\").version')" >> $GITHUB_ENV
 
     - name: Set up .npmrc
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
