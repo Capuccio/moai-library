@@ -23,6 +23,10 @@ jobs:
     - name: Build Library
       run: npm run build
 
+    - name: Get last tag version
+      id: version
+      run: echo "version=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
     - name: Set up .npmrc
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
@@ -39,8 +43,8 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: actions/create-release@v1
       with:
-       tag_name: ${{ github.sha }}
-       release_name: Release ${{ github.sha }}
+       tag_name: ${{ env.last_tag }}
+       release_name: Release ${{ env.last_tag }}
        body: |
         This release was created by GitHub Actions Workflows.
        draft: false
