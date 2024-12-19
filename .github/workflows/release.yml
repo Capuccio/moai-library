@@ -23,9 +23,12 @@ jobs:
     - name: Build Library
       run: npm run build
 
-    - name: Get last tag version
+    - name: Get last version
       id: package_version
-      run: echo "::set-output name=version::$(node -p "require('./package.json').version")"
+      run: |
+       VERSION=$(node -p "require('./package.json').version")
+       echo "VERSION=$VERSION" >> $GITHUB_ENV
+       echo "Version found in package.json: $VERSION" # Debugging output
 
     - name: Set up .npmrc
       run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
@@ -43,8 +46,8 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: actions/create-release@v1
       with:
-       tag_name: ${{ env.package_version.outputs.version }}
-       release_name: Release ${{ env.package_version.outputs.version }}
+       tag_name: ${{ env.VERSION }}
+       release_name: Release ${{ env.VERSION }}
        body: |
         This release was created by GitHub Actions Workflows.
        draft: false
