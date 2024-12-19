@@ -27,7 +27,7 @@ jobs:
       id: get_version
       run: |
        VERSION=$(node -p "require('./package.json').version")
-       echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+       echo "VERSION=$VERSION" >> $GITHUB_ENV
        echo "Version found in package.json: $VERSION" # Debugging output
 
     - name: Set up .npmrc
@@ -46,8 +46,8 @@ jobs:
       if: github.ref == 'refs/heads/master'
       uses: actions/create-release@v1
       with:
-       tag_name: ${{ steps.get_version.outputs.version }}
-       release_name: Release ${{ steps.get_version.outputs.version }}
+       tag_name: ${{ env.VERSION }}
+       release_name: Release ${{ env.VERSION }}
        body: |
         This release was created by GitHub Actions Workflows.
        draft: false
