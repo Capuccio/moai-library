@@ -1,7 +1,7 @@
 {
   "name": "moai-library-test",
   "private": false,
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-alpha.4",
   "type": "module",
   "files": [
     "dist"
