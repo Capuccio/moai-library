@@ -44,10 +44,10 @@ jobs:
 
     - name: Create GitHub Release
       if: github.ref == 'refs/heads/master'
-      uses: actions/create-release@v1
+      uses: actions/gh-release@v2
       with:
+       name: ${{ env.VERSION }}
        tag_name: ${{ env.VERSION }}
-       release_name: Release ${{ env.VERSION }}
        body: |
         This release was created by GitHub Actions Workflows.
        draft: false
